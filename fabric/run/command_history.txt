@@ -1,0 +1,6 @@
+/tp @a 0 0 0
+/effect give @a minecraft:night_vision infinite
+/tp @a 0 80 0
+/tp @a 100 64 100
+/tp @a 100 64 200
+/tp @a 0 80 0
