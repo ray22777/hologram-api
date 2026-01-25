@@ -7,23 +7,23 @@ license = "Insert License Here"
 modId = "hologram_api"
 version = "${version}"
 displayName = "Hologram API"
-authors = "Me!"
+authors = "ray"
 description = '''
-This is an example description! Tell everyone what your mod is about!
+API for client-side in world text rendering.
 '''
 #logoFile = ""
 
 [[dependencies.hologram_api]]
 modId = "neoforge"
 type = "required"
-versionRange = "[21.1,)"
+versionRange = "[21,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.hologram_api]]
 modId = "minecraft"
 type = "required"
-versionRange = "[1.21.1,)"
+versionRange = "[1.21,)"
 ordering = "NONE"
 side = "BOTH"
 

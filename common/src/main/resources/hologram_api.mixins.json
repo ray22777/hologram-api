@@ -1,4 +1,4 @@
-{
+  {
   "required": true,
   "package": "net.ray.mixin",
   "compatibilityLevel": "JAVA_21",

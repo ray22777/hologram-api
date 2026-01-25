@@ -7,8 +7,8 @@ Description: Unexpected error
 java.util.ConcurrentModificationException
 	at java.base/java.util.HashMap$HashIterator.nextNode(HashMap.java:1605)
 	at java.base/java.util.HashMap$ValueIterator.next(HashMap.java:1633)
-	at knot//net.ray.HologramRenderer$HologramManager.updateAll(HologramRenderer.java:45)
-	at knot//net.ray.HologramAPI.update(HologramAPI.java:38)
+	at knot//net.ray.HologramAPI.HologramRenderer$HologramManager.updateAll(HologramRenderer.java:45)
+	at knot//net.ray.HologramAPI.HologramAPI.update(HologramAPI.java:38)
 	at knot//net.ray.fabric.client.HologramAPIClient.lambda$onInitializeClient$1(HologramAPIClient.java:18)
 	at knot//net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents.lambda$static$2(ClientTickEvents.java:43)
 	at knot//net.minecraft.client.Minecraft.handler$zjb000$fabric-lifecycle-events-v1$onEndTick(Minecraft.java:4185)
@@ -31,8 +31,8 @@ Thread: Render thread
 Stacktrace:
 	at java.base/java.util.HashMap$HashIterator.nextNode(HashMap.java:1605)
 	at java.base/java.util.HashMap$ValueIterator.next(HashMap.java:1633)
-	at knot//net.ray.HologramRenderer$HologramManager.updateAll(HologramRenderer.java:45)
-	at knot//net.ray.HologramAPI.update(HologramAPI.java:38)
+	at knot//net.ray.HologramAPI.HologramRenderer$HologramManager.updateAll(HologramRenderer.java:45)
+	at knot//net.ray.HologramAPI.HologramAPI.update(HologramAPI.java:38)
 	at knot//net.ray.fabric.client.HologramAPIClient.lambda$onInitializeClient$1(HologramAPIClient.java:18)
 	at knot//net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents.lambda$static$2(ClientTickEvents.java:43)
 	at knot//net.minecraft.client.Minecraft.handler$zjb000$fabric-lifecycle-events-v1$onEndTick(Minecraft.java:4185)
