@@ -5,7 +5,10 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.network.chat.Component;
+import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.RegisterClientCommandsEvent;
+import net.neoforged.neoforge.common.NeoForge;
 import net.ray.HologramAPI.HologramAPI;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -32,6 +35,7 @@ public final class HologramAPIMod {
             HologramAPI.renderForce(poseStack, bufferSource);
         }
     }
+
 
     @SubscribeEvent
     public static void onClientTick(ClientTickEvent.Post event) {

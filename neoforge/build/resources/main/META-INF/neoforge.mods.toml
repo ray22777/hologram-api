@@ -1,0 +1,31 @@
+modLoader = "javafml"
+loaderVersion = "[1,)"
+#issueTrackerURL = ""
+license = "Insert License Here"
+
+[[mods]]
+modId = "hologram_api"
+version = "1.0.0"
+displayName = "Hologram API"
+authors = "ray"
+description = '''
+API for client-side in world text rendering.
+'''
+#logoFile = ""
+
+[[dependencies.hologram_api]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.hologram_api]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[mixins]]
+config = "hologram_api.mixins.json"

@@ -4,3 +4,16 @@
 /tp @a 100 64 100
 /tp @a 100 64 200
 /tp @a 0 80 0
+/hologram 3 3 0 4 true
+/hologram "343" 4 5 5 5
+/hologram Hello World 0 70 0
+/hologram Hello 0 0 0 true
+/hologram Hello 0 60 0 true
+/hologram "2323 3 3" 0 60 0 true
+/hologram "2323 3 3" 0 60 0
+/hologram create 200203 22 0202 2 2
+/hologram create 200203 22 0202 2 true
+/hologram create nigga 0 80 0 true
+/hologram create "&cnigga" 0 80 0 true
+/hologram create "&lniggas" 0 80 0 true
+/hologram clearAll
