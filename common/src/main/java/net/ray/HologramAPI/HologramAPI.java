@@ -28,7 +28,7 @@ public class HologramAPI {
     public static void render(PoseStack poseStack, MultiBufferSource buffer) {
         HologramRenderer.HologramManager.renderAll(poseStack, buffer);
     }
-    public static void renderForce(PoseStack poseStack, MultiBufferSource buffer) {
-        HologramRenderer.HologramManager.renderAllForce(poseStack, buffer);
-    }
+//    public static void renderForce(PoseStack poseStack, MultiBufferSource buffer) {
+//        HologramRenderer.HologramManager.renderAllForce(poseStack, buffer);
+//    }
 }

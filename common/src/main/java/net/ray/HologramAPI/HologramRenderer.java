@@ -1,5 +1,6 @@
 package net.ray.HologramAPI;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
@@ -9,6 +10,7 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.network.chat.Component;
 import com.mojang.math.Axis;
 import org.joml.Vector3f;
+import org.lwjgl.opengl.GL11;
 
 import java.util.*;
 
@@ -75,23 +77,9 @@ public class HologramRenderer {
             List<Hologram> hologramsToRender = new ArrayList<>(HOLOGRAMS.values());
 
             for (Hologram hologram : hologramsToRender) {
-                if(!hologram.renderOnTop){
                     renderHologram(hologram, poseStack, buffer);
-                }
             }
         }
-        public static void renderAllForce(PoseStack poseStack, MultiBufferSource buffer) {
-            if (MC.player == null || MC.level == null) return;
-
-            List<Hologram> hologramsToRender = new ArrayList<>(HOLOGRAMS.values());
-
-            for (Hologram hologram : hologramsToRender) {
-                if(hologram.renderOnTop){
-                    renderHologram(hologram, poseStack, buffer);
-                }
-            }
-        }
-
         private static void updateHologram(Hologram hologram) {
             hologram.age++;
 
@@ -204,10 +192,16 @@ public class HologramRenderer {
 
         int lineWidth = font.width(hologram.component);
         float xOffset = getXOffset(lineWidth, hologram.alignment);
-
         int alphaByte = (int)(hologram.alpha * 255);
         int finalColor = (alphaByte << 24) |  0x00FFFFFF;
         poseStack.pushPose();
+        Font.DisplayMode displayMode;
+        if(hologram.renderOnTop){
+            displayMode = Font.DisplayMode.SEE_THROUGH;
+        }
+        else{
+            displayMode = Font.DisplayMode.NORMAL;
+        }
         if (hologram.shadow) {
             poseStack.pushPose();
             poseStack.translate(0, 0, +0.1f);
@@ -223,7 +217,7 @@ public class HologramRenderer {
                     false,
                     poseStack.last().pose(),
                     buffer,
-                    Font.DisplayMode.NORMAL,
+                    displayMode,
                     0,
                     15728880
             );
@@ -237,7 +231,7 @@ public class HologramRenderer {
                 false,
                 poseStack.last().pose(),
                 buffer,
-                Font.DisplayMode.NORMAL,
+                displayMode,
                 0,
                 15728880
         );
