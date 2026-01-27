@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "hologram_api",
+  "version": "${version}",
+  "name": "Hologram API",
+  "description": "API for client-side in world text rendering.",
+  "authors": [
+    "ray"
+  ],
+  "contact": {
+    "sources": "https://github.com/ray22777/hologram-api"
+  },
+  "license": "MIT",
+  "icon": "assets/hologram_api/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.ray.HologramAPI.HologramAPIMod"
+    ],
+    "client": [
+      "net.ray.HologramAPI.client.HologramAPIClient"
+    ]
+  },
+  "depends": {
+    "fabricloader": "*",
+    "minecraft": ">=1.20",
+    "java": "*",
+    "fabric-api": "*"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
