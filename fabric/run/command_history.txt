@@ -17,3 +17,6 @@
 /hologram create "&cnigga" 0 80 0 true
 /hologram create "&lniggas" 0 80 0 true
 /hologram clearAll
+/hologram create "&lniggas" 0 80 0 true
+/hologram create "&TEST" 0 80 0 true
+/hologram create "&TEsssssssssST" 0 80 0 false
