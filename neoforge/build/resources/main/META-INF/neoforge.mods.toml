@@ -11,7 +11,7 @@ authors = "ray"
 description = '''
 API for client-side in world text rendering.
 '''
-#logoFile = ""
+logoFile = "assets/hologram_api/icon.png"
 
 [[dependencies.hologram_api]]
 modId = "neoforge"
