@@ -111,15 +111,15 @@
 [Architectury Transformer DEBUG]  - C:\Users\Ray\Documents\ModDevNew\HologramAPI\.gradle\loom-cache\remapped_mods\remapped\net\fabricmc\fabric-api\fabric-resource-loader-v0-b9d2d3ba\1.3.1+5b5275af19\fabric-resource-loader-v0-b9d2d3ba-1.3.1+5b5275af19.jar
 [Architectury Transformer DEBUG]  - C:\Users\Ray\Documents\ModDevNew\HologramAPI\.gradle\loom-cache\remapped_mods\remapped\net\fabricmc\fabric-api\fabric-sound-api-v1-b9d2d3ba\1.0.23+6573ed8c19\fabric-sound-api-v1-b9d2d3ba-1.0.23+6573ed8c19.jar
 [Architectury Transformer DEBUG]  - C:\Users\Ray\Documents\ModDevNew\HologramAPI\.gradle\loom-cache\remapped_mods\remapped\net\fabricmc\fabric-api\fabric-transitive-access-wideners-v1-b9d2d3ba\6.2.0+45b9699719\fabric-transitive-access-wideners-v1-b9d2d3ba-6.2.0+45b9699719.jar
-[Architectury Transformer] Read classpath in 1.391 s
+[Architectury Transformer] Read classpath in 1.497 s
 [Architectury Transformer DEBUG] Closed File Systems for C:\Users\Ray\Documents\ModDevNew\HologramAPI\common\build\devlibs\hologram_api-common-1.0.0-dev.jar
-[Architectury Transformer DEBUG] Transforming 5 transformer(s) from C:\Users\Ray\Documents\ModDevNew\HologramAPI\common\build\devlibs\hologram_api-common-1.0.0-dev.jar to C:\Users\Ray\AppData\Local\Temp\6949633210545734856.jar: 
-[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.RuntimeMixinRefmapDetector@76a3e297
-[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.GenerateFakeFabricMod@4d3167f4
-[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformExpectPlatform@ed9d034
-[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.RemapInjectables@6121c9d6
-[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformPlatformOnly@87f383f
-[Architectury Transformer DEBUG] Transforming from C:\Users\Ray\Documents\ModDevNew\HologramAPI\common\build\devlibs\hologram_api-common-1.0.0-dev.jar to C:\Users\Ray\AppData\Local\Temp\6949633210545734856.jar with 5 transformer(s) on dev.architectury.transformer.handler.SimpleTransformerHandler
+[Architectury Transformer DEBUG] Transforming 5 transformer(s) from C:\Users\Ray\Documents\ModDevNew\HologramAPI\common\build\devlibs\hologram_api-common-1.0.0-dev.jar to C:\Users\Ray\AppData\Local\Temp\2357541855993165236.jar: 
+[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.RuntimeMixinRefmapDetector@87f383f
+[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.GenerateFakeFabricMod@4eb7f003
+[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformExpectPlatform@eafc191
+[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.RemapInjectables@612fc6eb
+[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformPlatformOnly@1060b431
+[Architectury Transformer DEBUG] Transforming from C:\Users\Ray\Documents\ModDevNew\HologramAPI\common\build\devlibs\hologram_api-common-1.0.0-dev.jar to C:\Users\Ray\AppData\Local\Temp\2357541855993165236.jar with 5 transformer(s) on dev.architectury.transformer.handler.SimpleTransformerHandler
 [Architectury Transformer DEBUG] Found class transformer
 [Architectury Transformer DEBUG] Writing net/ray/HologramAPI/ComponentUtils with maxs=true frames=true
 [Architectury Transformer DEBUG] Writing net/ray/HologramAPI/Hologram$BillboardMode with maxs=true frames=true
@@ -130,40 +130,16 @@
 [Architectury Transformer DEBUG] Writing net/ray/HologramAPI/HologramRenderer$HologramManager with maxs=true frames=true
 [Architectury Transformer DEBUG] Writing net/ray/HologramAPI/HologramRenderer with maxs=true frames=true
 [Architectury Transformer DEBUG] Checking whether /hologram_api.mixins.json is a mixin config.
-[Architectury Transformer DEBUG] Closed File Systems for C:\Users\Ray\AppData\Local\Temp\6949633210545734856.jar
+[Architectury Transformer DEBUG] Closed File Systems for C:\Users\Ray\AppData\Local\Temp\2357541855993165236.jar
 [Architectury Transformer] Listening at C:\Users\Ray\Documents\ModDevNew\HologramAPI\common\build\devlibs\hologram_api-common-1.0.0-dev.jar
-[Architectury Transformer DEBUG] Temporary jar [C:\Users\Ray\AppData\Local\Temp\6949633210545734856.jar] contains packages: net.ray.HologramAPI
+[Architectury Transformer DEBUG] Temporary jar [C:\Users\Ray\AppData\Local\Temp\2357541855993165236.jar] contains packages: net.ray.HologramAPI
 [Architectury Transformer DEBUG] Closed File Systems for C:\Users\Ray\Documents\ModDevNew\HologramAPI\common\build\devlibs\hologram_api-common-1.0.0-dev.jar
 [Architectury Transformer DEBUG] Classpath entry [C:\Users\Ray\Documents\ModDevNew\HologramAPI\fabric\build\resources\main] contains packages: 
 [Architectury Transformer DEBUG] Transforming from net/ray/HologramAPI/HologramAPI.class to net/ray/HologramAPI/HologramAPI.class with 5 transformer(s) on dev.architectury.transformer.handler.TinyRemapperPreparedTransformerHandler
 [Architectury Transformer DEBUG] Found class transformer
 [Architectury Transformer DEBUG] Writing net/ray/HologramAPI/HologramAPI with maxs=true frames=true
-[Architectury Transformer DEBUG] Transformed net/ray/HologramAPI/HologramAPI in 1.779 ms
+[Architectury Transformer DEBUG] Transformed net/ray/HologramAPI/HologramAPI in 2.314 ms
 [Architectury Transformer DEBUG] Transforming from net/ray/HologramAPI/HologramRenderer$HologramManager.class to net/ray/HologramAPI/HologramRenderer$HologramManager.class with 5 transformer(s) on dev.architectury.transformer.handler.TinyRemapperPreparedTransformerHandler
 [Architectury Transformer DEBUG] Found class transformer
 [Architectury Transformer DEBUG] Writing net/ray/HologramAPI/HologramRenderer$HologramManager with maxs=true frames=true
-[Architectury Transformer DEBUG] Transformed net/ray/HologramAPI/HologramRenderer$HologramManager in 2.203 ms
-[Architectury Transformer DEBUG] Transforming from net/ray/HologramAPI/HologramRenderer.class to net/ray/HologramAPI/HologramRenderer.class with 5 transformer(s) on dev.architectury.transformer.handler.TinyRemapperPreparedTransformerHandler
-[Architectury Transformer DEBUG] Found class transformer
-[Architectury Transformer DEBUG] Writing net/ray/HologramAPI/HologramRenderer with maxs=true frames=true
-[Architectury Transformer DEBUG] Transformed net/ray/HologramAPI/HologramRenderer in 4.419 ms
-[Architectury Transformer DEBUG] Transforming from net/ray/HologramAPI/ComponentUtils.class to net/ray/HologramAPI/ComponentUtils.class with 5 transformer(s) on dev.architectury.transformer.handler.TinyRemapperPreparedTransformerHandler
-[Architectury Transformer DEBUG] Found class transformer
-[Architectury Transformer DEBUG] Writing net/ray/HologramAPI/ComponentUtils with maxs=true frames=true
-[Architectury Transformer DEBUG] Transformed net/ray/HologramAPI/ComponentUtils in 1.379 ms
-[Architectury Transformer DEBUG] Transforming from net/ray/HologramAPI/Hologram.class to net/ray/HologramAPI/Hologram.class with 5 transformer(s) on dev.architectury.transformer.handler.TinyRemapperPreparedTransformerHandler
-[Architectury Transformer DEBUG] Found class transformer
-[Architectury Transformer DEBUG] Writing net/ray/HologramAPI/Hologram with maxs=true frames=true
-[Architectury Transformer DEBUG] Transformed net/ray/HologramAPI/Hologram in 1.213 ms
-[Architectury Transformer DEBUG] Transforming from net/ray/HologramAPI/Hologram$BillboardMode.class to net/ray/HologramAPI/Hologram$BillboardMode.class with 5 transformer(s) on dev.architectury.transformer.handler.TinyRemapperPreparedTransformerHandler
-[Architectury Transformer DEBUG] Found class transformer
-[Architectury Transformer DEBUG] Writing net/ray/HologramAPI/Hologram$BillboardMode with maxs=true frames=true
-[Architectury Transformer DEBUG] Transformed net/ray/HologramAPI/Hologram$BillboardMode in 473.7 μs
-[Architectury Transformer DEBUG] Transforming from net/ray/HologramAPI/Hologram$TextAlignment.class to net/ray/HologramAPI/Hologram$TextAlignment.class with 5 transformer(s) on dev.architectury.transformer.handler.TinyRemapperPreparedTransformerHandler
-[Architectury Transformer DEBUG] Found class transformer
-[Architectury Transformer DEBUG] Writing net/ray/HologramAPI/Hologram$TextAlignment with maxs=true frames=true
-[Architectury Transformer DEBUG] Transformed net/ray/HologramAPI/Hologram$TextAlignment in 518.9 μs
-[Architectury Transformer DEBUG] Transforming from net/ray/HologramAPI/HologramRenderer$1.class to net/ray/HologramAPI/HologramRenderer$1.class with 5 transformer(s) on dev.architectury.transformer.handler.TinyRemapperPreparedTransformerHandler
-[Architectury Transformer DEBUG] Found class transformer
-[Architectury Transformer DEBUG] Writing net/ray/HologramAPI/HologramRenderer$1 with maxs=true frames=true
-[Architectury Transformer DEBUG] Transformed net/ray/HologramAPI/HologramRenderer$1 in 950.5 μs
+[Architectury Transformer DEBUG] Transformed net/ray/HologramAPI/HologramRenderer$HologramManager in 2.456 ms
