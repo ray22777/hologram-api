@@ -1,0 +1,6 @@
+/tp @a 0 80 0
+/tp @a 0 70 0
+/hologram create 232 0 0 0 true
+/hologram create 232 0 80 0 true
+/hologram clearAll
+/hologram
