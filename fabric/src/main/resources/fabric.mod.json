@@ -12,7 +12,7 @@
     "sources": ""
   },
   "icon": "assets/hologram_api/icon.png",
-  "license": "CC0-1.0",
+  "license": "MIT",
   "environment": "*",
   "entrypoints": {
     "main": [

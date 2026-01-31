@@ -10,7 +10,11 @@ import net.minecraft.network.chat.Component;
 import com.mojang.math.Axis;
 import org.joml.Vector3f;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 
 public class HologramRenderer {
     private static final Minecraft MC = Minecraft.getInstance();

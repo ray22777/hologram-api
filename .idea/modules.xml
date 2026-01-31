@@ -7,8 +7,6 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/hologram_api.common.test.iml" filepath="$PROJECT_DIR$/.idea/modules/common/hologram_api.common.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/fabric/hologram_api.fabric.main.iml" filepath="$PROJECT_DIR$/.idea/modules/fabric/hologram_api.fabric.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/fabric/hologram_api.fabric.test.iml" filepath="$PROJECT_DIR$/.idea/modules/fabric/hologram_api.fabric.test.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/neoforge/hologram_api.neoforge.main.iml" filepath="$PROJECT_DIR$/.idea/modules/neoforge/hologram_api.neoforge.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/neoforge/hologram_api.neoforge.test.iml" filepath="$PROJECT_DIR$/.idea/modules/neoforge/hologram_api.neoforge.test.iml" />
     </modules>
   </component>
 </project>

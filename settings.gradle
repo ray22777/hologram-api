@@ -11,4 +11,3 @@ rootProject.name = 'hologram_api'
 
 include 'common'
 include 'fabric'
-include 'neoforge'
