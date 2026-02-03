@@ -1,18 +1,18 @@
 [Architectury Transformer DEBUG] 
 [Architectury Transformer DEBUG] ============================
-[Architectury Transformer DEBUG] Transforming from C:\Users\Ray\Documents\ModDevNew\hologram_api-1.20.1-fabric-forge-template\common\build\devlibs\hologram_api-common-1.0.0-dev.jar to C:\Users\Ray\Documents\ModDevNew\hologram_api-1.20.1-fabric-forge-template\common\build\libs\hologram_api-common-1.0.0-transformProductionFabric.jar
+[Architectury Transformer DEBUG] Transforming from C:\Users\Ray\Documents\ModDevNew\hologram_api-1.20.1-fabric-forge-template\common\build\devlibs\hologram_api-common-1.1.0-dev.jar to C:\Users\Ray\Documents\ModDevNew\hologram_api-1.20.1-fabric-forge-template\common\build\libs\hologram_api-common-1.1.0-transformProductionFabric.jar
 [Architectury Transformer DEBUG] ============================
 [Architectury Transformer DEBUG] 
-[Architectury Transformer DEBUG] Transforming 5 transformer(s) from C:\Users\Ray\Documents\ModDevNew\hologram_api-1.20.1-fabric-forge-template\common\build\devlibs\hologram_api-common-1.0.0-dev.jar to C:\Users\Ray\Documents\ModDevNew\hologram_api-1.20.1-fabric-forge-template\common\build\libs\hologram_api-common-1.0.0-transformProductionFabric.jar: 
-[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.RemapMixinVariables@3680255b
-[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformExpectPlatform@426606ae
-[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.RemapInjectables@2c88b945
+[Architectury Transformer DEBUG] Transforming 5 transformer(s) from C:\Users\Ray\Documents\ModDevNew\hologram_api-1.20.1-fabric-forge-template\common\build\devlibs\hologram_api-common-1.1.0-dev.jar to C:\Users\Ray\Documents\ModDevNew\hologram_api-1.20.1-fabric-forge-template\common\build\libs\hologram_api-common-1.1.0-transformProductionFabric.jar: 
+[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.RemapMixinVariables@736eacc9
+[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformExpectPlatform@19f023a
+[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.RemapInjectables@79191e52
 [Architectury Transformer DEBUG]  - AddRefmapName(enabled=() -> kotlin.Boolean)
-[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformPlatformOnly@28f73fa6
-[Architectury Transformer DEBUG] Transforming from C:\Users\Ray\Documents\ModDevNew\hologram_api-1.20.1-fabric-forge-template\common\build\devlibs\hologram_api-common-1.0.0-dev.jar to C:\Users\Ray\Documents\ModDevNew\hologram_api-1.20.1-fabric-forge-template\common\build\libs\hologram_api-common-1.0.0-transformProductionFabric.jar with 5 transformer(s) on dev.architectury.transformer.handler.SimpleTransformerHandler
+[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformPlatformOnly@2ded85a7
+[Architectury Transformer DEBUG] Transforming from C:\Users\Ray\Documents\ModDevNew\hologram_api-1.20.1-fabric-forge-template\common\build\devlibs\hologram_api-common-1.1.0-dev.jar to C:\Users\Ray\Documents\ModDevNew\hologram_api-1.20.1-fabric-forge-template\common\build\libs\hologram_api-common-1.1.0-transformProductionFabric.jar with 5 transformer(s) on dev.architectury.transformer.handler.SimpleTransformerHandler
 [Architectury Transformer DEBUG] Reading mixin mappings file: C:\Users\Ray\Documents\ModDevNew\hologram_api-1.20.1-fabric-forge-template\common\build\loom-cache\mixin-map-loom.mappings.1_20_1.layered+hash.40359-v2.main.tiny
 [Architectury Transformer DEBUG] Remapping with 1 mapping provider(s):
-[Architectury Transformer DEBUG]  - dev.architectury.transformer.shadowed.impl.dev.architectury.tinyremapper.TinyUtils$$Lambda/0x000000000bba4aa8@2066035a
+[Architectury Transformer DEBUG]  - dev.architectury.transformer.shadowed.impl.dev.architectury.tinyremapper.TinyUtils$$Lambda/0x000002a3020e7690@273f49b6
 [Architectury Transformer DEBUG] Provided 56 classpath jar(s):
 [Architectury Transformer DEBUG]  - C:\Users\Ray\.gradle\caches\modules-2\files-2.1\dev.architectury\architectury-injectables\1.0.10\62db2a366d662606d1b23ad02ccc3212ed37ec3\architectury-injectables-1.0.10.jar
 [Architectury Transformer DEBUG]  - C:\Users\Ray\.gradle\caches\modules-2\files-2.1\net.fabricmc\fabric-loader\0.18.4\dc4682125d5db647d6ce80a98b98945835adcd4b\fabric-loader-0.18.4.jar
@@ -70,7 +70,7 @@
 [Architectury Transformer DEBUG]  - C:\Users\Ray\.gradle\caches\fabric-loom\minecraftMaven\net\minecraft\minecraft-merged\1.20.1-loom.mappings.1_20_1.layered+hash.40359-v2\minecraft-merged-1.20.1-loom.mappings.1_20_1.layered+hash.40359-v2.jar
 [Architectury Transformer DEBUG]  - C:\Users\Ray\.gradle\caches\modules-2\files-2.1\io.netty\netty-transport-native-epoll\4.1.82.Final\c7350a71920f3ae9142945e25fed4846cce53374\netty-transport-native-epoll-4.1.82.Final-linux-x86_64.jar
 [Architectury Transformer DEBUG]  - C:\Users\Ray\.gradle\caches\modules-2\files-2.1\io.netty\netty-transport-native-epoll\4.1.82.Final\476409d6255001ca53a55f65b01c13822f8dc93a\netty-transport-native-epoll-4.1.82.Final-linux-aarch_64.jar
-[Architectury Transformer] Read classpath in 2.236 s
+[Architectury Transformer] Read classpath in 2.121 s
 [Architectury Transformer DEBUG] Remapping Classes:
 [Architectury Transformer DEBUG] Found class transformer
 [Architectury Transformer DEBUG] Writing net/ray/HologramAPI/HologramRenderer with maxs=true frames=true
@@ -78,34 +78,34 @@
 [Architectury Transformer DEBUG] Writing net/ray/HologramAPI/ComponentUtils with maxs=true frames=true
 [Architectury Transformer DEBUG] Writing net/ray/HologramAPI/Hologram with maxs=true frames=true
 [Architectury Transformer DEBUG] Writing net/ray/HologramAPI/HologramRenderer$1 with maxs=true frames=true
-[Architectury Transformer DEBUG] Writing net/ray/HologramAPI/Hologram$BillboardMode with maxs=true frames=true
 [Architectury Transformer DEBUG] Writing net/ray/HologramAPI/HologramAPI with maxs=true frames=true
+[Architectury Transformer DEBUG] Writing net/ray/HologramAPI/Hologram$BillboardMode with maxs=true frames=true
 [Architectury Transformer DEBUG] Writing net/ray/HologramAPI/Hologram$TextAlignment with maxs=true frames=true
 [Architectury Transformer DEBUG] Writing net/ray/HologramAPI/mixin/RenderMixin with maxs=true frames=true
 [Architectury Transformer DEBUG] Checking whether /hologram_api.mixins.json is a mixin config.
 [Architectury Transformer DEBUG] Checking whether /hologram_api-common-common-refmap.json is a mixin config.
 [Architectury Transformer DEBUG] Found mixin config(s): /hologram_api.mixins.json
 [Architectury Transformer DEBUG] Injecting hologram_api-common-common-refmap.json to /hologram_api.mixins.json
-[Architectury Transformer DEBUG] Closed File Systems for C:\Users\Ray\Documents\ModDevNew\hologram_api-1.20.1-fabric-forge-template\common\build\libs\hologram_api-common-1.0.0-transformProductionFabric.jar
-[Architectury Transformer] Transformed jar with 5 transformer(s) in 2.714 s
+[Architectury Transformer DEBUG] Closed File Systems for C:\Users\Ray\Documents\ModDevNew\hologram_api-1.20.1-fabric-forge-template\common\build\libs\hologram_api-common-1.1.0-transformProductionFabric.jar
+[Architectury Transformer] Transformed jar with 5 transformer(s) in 2.716 s
 [Architectury Transformer DEBUG] 
 [Architectury Transformer DEBUG] ============================
-[Architectury Transformer DEBUG] Transforming from C:\Users\Ray\Documents\ModDevNew\hologram_api-1.20.1-fabric-forge-template\common\build\devlibs\hologram_api-common-1.0.0-dev.jar to C:\Users\Ray\Documents\ModDevNew\hologram_api-1.20.1-fabric-forge-template\common\build\libs\hologram_api-common-1.0.0-transformProductionForge.jar
+[Architectury Transformer DEBUG] Transforming from C:\Users\Ray\Documents\ModDevNew\hologram_api-1.20.1-fabric-forge-template\common\build\devlibs\hologram_api-common-1.1.0-dev.jar to C:\Users\Ray\Documents\ModDevNew\hologram_api-1.20.1-fabric-forge-template\common\build\libs\hologram_api-common-1.1.0-transformProductionForge.jar
 [Architectury Transformer DEBUG] ============================
 [Architectury Transformer DEBUG] 
-[Architectury Transformer DEBUG] Transforming 7 transformer(s) from C:\Users\Ray\Documents\ModDevNew\hologram_api-1.20.1-fabric-forge-template\common\build\devlibs\hologram_api-common-1.0.0-dev.jar to C:\Users\Ray\Documents\ModDevNew\hologram_api-1.20.1-fabric-forge-template\common\build\libs\hologram_api-common-1.0.0-transformProductionForge.jar: 
-[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformExpectPlatform@707f7f24
-[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.RemapInjectables@670ae66e
+[Architectury Transformer DEBUG] Transforming 7 transformer(s) from C:\Users\Ray\Documents\ModDevNew\hologram_api-1.20.1-fabric-forge-template\common\build\devlibs\hologram_api-common-1.1.0-dev.jar to C:\Users\Ray\Documents\ModDevNew\hologram_api-1.20.1-fabric-forge-template\common\build\libs\hologram_api-common-1.1.0-transformProductionForge.jar: 
+[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformExpectPlatform@2766b8c2
+[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.RemapInjectables@11c97acd
 [Architectury Transformer DEBUG]  - AddRefmapName(enabled=() -> kotlin.Boolean)
-[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformPlatformOnly@3f9d6829
-[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformForgeAnnotations@402e8546
-[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformForgeEnvironment@4282002d
-[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.FixForgeMixin@764f5c20
-[Architectury Transformer DEBUG] Transforming from C:\Users\Ray\Documents\ModDevNew\hologram_api-1.20.1-fabric-forge-template\common\build\devlibs\hologram_api-common-1.0.0-dev.jar to C:\Users\Ray\Documents\ModDevNew\hologram_api-1.20.1-fabric-forge-template\common\build\libs\hologram_api-common-1.0.0-transformProductionForge.jar with 7 transformer(s) on dev.architectury.transformer.handler.SimpleTransformerHandler
+[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformPlatformOnly@527db207
+[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformForgeAnnotations@2924777e
+[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformForgeEnvironment@203e729c
+[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.FixForgeMixin@74b7fb8d
+[Architectury Transformer DEBUG] Transforming from C:\Users\Ray\Documents\ModDevNew\hologram_api-1.20.1-fabric-forge-template\common\build\devlibs\hologram_api-common-1.1.0-dev.jar to C:\Users\Ray\Documents\ModDevNew\hologram_api-1.20.1-fabric-forge-template\common\build\libs\hologram_api-common-1.1.0-transformProductionForge.jar with 7 transformer(s) on dev.architectury.transformer.handler.SimpleTransformerHandler
 [Architectury Transformer DEBUG] Reading mixin mappings file: C:\Users\Ray\Documents\ModDevNew\hologram_api-1.20.1-fabric-forge-template\common\build\loom-cache\mixin-map-loom.mappings.1_20_1.layered+hash.40359-v2.main.tiny
 [Architectury Transformer DEBUG] Remapping with 2 mapping provider(s):
-[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformForgeEnvironment$$Lambda/0x000000000bdea980@409808ca
-[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformForgeEnvironment$$Lambda/0x000000000bdeabb0@6845905b
+[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformForgeEnvironment$$Lambda/0x000002a3022e86a8@7f2f3cae
+[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformForgeEnvironment$$Lambda/0x000002a3022e8480@2d277fae
 [Architectury Transformer DEBUG] Provided 56 classpath jar(s):
 [Architectury Transformer DEBUG]  - C:\Users\Ray\.gradle\caches\modules-2\files-2.1\dev.architectury\architectury-injectables\1.0.10\62db2a366d662606d1b23ad02ccc3212ed37ec3\architectury-injectables-1.0.10.jar
 [Architectury Transformer DEBUG]  - C:\Users\Ray\.gradle\caches\modules-2\files-2.1\net.fabricmc\fabric-loader\0.18.4\dc4682125d5db647d6ce80a98b98945835adcd4b\fabric-loader-0.18.4.jar
@@ -163,7 +163,7 @@
 [Architectury Transformer DEBUG]  - C:\Users\Ray\.gradle\caches\fabric-loom\minecraftMaven\net\minecraft\minecraft-merged\1.20.1-loom.mappings.1_20_1.layered+hash.40359-v2\minecraft-merged-1.20.1-loom.mappings.1_20_1.layered+hash.40359-v2.jar
 [Architectury Transformer DEBUG]  - C:\Users\Ray\.gradle\caches\modules-2\files-2.1\io.netty\netty-transport-native-epoll\4.1.82.Final\c7350a71920f3ae9142945e25fed4846cce53374\netty-transport-native-epoll-4.1.82.Final-linux-x86_64.jar
 [Architectury Transformer DEBUG]  - C:\Users\Ray\.gradle\caches\modules-2\files-2.1\io.netty\netty-transport-native-epoll\4.1.82.Final\476409d6255001ca53a55f65b01c13822f8dc93a\netty-transport-native-epoll-4.1.82.Final-linux-aarch_64.jar
-[Architectury Transformer] Read classpath in 1.088 s
+[Architectury Transformer] Read classpath in 1.352 s
 [Architectury Transformer DEBUG] Remapping Classes:
 [Architectury Transformer DEBUG] net/fabricmc/api/EnvType -> net/minecraftforge/api/distmarker/Dist
 [Architectury Transformer DEBUG] net/fabricmc/api/Environment -> net/minecraftforge/api/distmarker/OnlyIn
@@ -173,8 +173,8 @@
 [Architectury Transformer DEBUG] Writing net/ray/HologramAPI/Hologram$BillboardMode with maxs=true frames=true
 [Architectury Transformer DEBUG] Writing net/ray/HologramAPI/HologramRenderer$1 with maxs=true frames=true
 [Architectury Transformer DEBUG] Writing net/ray/HologramAPI/Hologram with maxs=true frames=true
-[Architectury Transformer DEBUG] Writing net/ray/HologramAPI/HologramRenderer$HologramManager with maxs=true frames=true
 [Architectury Transformer DEBUG] Writing net/ray/HologramAPI/Hologram$TextAlignment with maxs=true frames=true
+[Architectury Transformer DEBUG] Writing net/ray/HologramAPI/HologramRenderer$HologramManager with maxs=true frames=true
 [Architectury Transformer DEBUG] Writing net/ray/HologramAPI/ComponentUtils with maxs=true frames=true
 [Architectury Transformer DEBUG] Writing net/ray/HologramAPI/mixin/RenderMixin with maxs=true frames=true
 [Architectury Transformer DEBUG] Checking whether /hologram_api.mixins.json is a mixin config.
@@ -190,6 +190,6 @@
 [Architectury Transformer DEBUG] Remapped refmap value Lnet/minecraft/class_757;method_3188(FJLnet/minecraft/class_4587;)V -> Lnet/minecraft/client/renderer/GameRenderer;m_109089_(FJLcom/mojang/blaze3d/vertex/PoseStack;)V
 [Architectury Transformer DEBUG] Remapped refmap value Lnet/minecraft/class_761;method_22710(Lnet/minecraft/class_4587;FJZLnet/minecraft/class_4184;Lnet/minecraft/class_757;Lnet/minecraft/class_765;Lorg/joml/Matrix4f;)V -> Lnet/minecraft/client/renderer/LevelRenderer;m_109599_(Lcom/mojang/blaze3d/vertex/PoseStack;FJZLnet/minecraft/client/Camera;Lnet/minecraft/client/renderer/GameRenderer;Lnet/minecraft/client/renderer/LightTexture;Lorg/joml/Matrix4f;)V
 [Architectury Transformer DEBUG] Remapped refmap value Lnet/minecraft/class_757;method_3188(FJLnet/minecraft/class_4587;)V -> Lnet/minecraft/client/renderer/GameRenderer;m_109089_(FJLcom/mojang/blaze3d/vertex/PoseStack;)V
-[Architectury Transformer DEBUG] Closed File Systems for C:\Users\Ray\Documents\ModDevNew\hologram_api-1.20.1-fabric-forge-template\common\build\libs\hologram_api-common-1.0.0-transformProductionForge.jar
-[Architectury Transformer] Transformed jar with 7 transformer(s) in 1.636 s
-[Architectury Transformer DEBUG] Closed File Systems for C:\Users\Ray\Documents\ModDevNew\hologram_api-1.20.1-fabric-forge-template\common\build\libs\hologram_api-common-1.0.0.jar
+[Architectury Transformer DEBUG] Closed File Systems for C:\Users\Ray\Documents\ModDevNew\hologram_api-1.20.1-fabric-forge-template\common\build\libs\hologram_api-common-1.1.0-transformProductionForge.jar
+[Architectury Transformer] Transformed jar with 7 transformer(s) in 2.067 s
+[Architectury Transformer DEBUG] Closed File Systems for C:\Users\Ray\Documents\ModDevNew\hologram_api-1.20.1-fabric-forge-template\common\build\libs\hologram_api-common-1.1.0.jar

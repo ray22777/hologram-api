@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "hologram_api",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "name": "Hologram API",
   "description": "API for client-side in world text rendering.",
   "authors": [
@@ -27,8 +27,5 @@
     "minecraft": ">=1.20",
     "java": "*",
     "fabric-api": "*"
-  },
-  "suggests": {
-    "another-mod": "*"
   }
 }

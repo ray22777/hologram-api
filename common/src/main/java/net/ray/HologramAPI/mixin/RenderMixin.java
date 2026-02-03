@@ -28,6 +28,6 @@ public class RenderMixin {
         Minecraft mc = Minecraft.getInstance();
         if (mc.level == null || mc.player == null || mc.isPaused()) return;
         MultiBufferSource.BufferSource bufferSource = mc.renderBuffers().bufferSource();
-        HologramAPI.renderForce(poseStack, bufferSource);
+        HologramAPI.renderForce(poseStack, bufferSource,partialTick);
     }
 }

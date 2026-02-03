@@ -20,7 +20,7 @@ public class HologramRenderer {
     private static final Minecraft MC = Minecraft.getInstance();
 
     public static class HologramManager {
-        private static final Map<Integer, Hologram> HOLOGRAMS = new HashMap<>();
+        public static final Map<Integer, Hologram> HOLOGRAMS = new HashMap<>();
         private static final List<Hologram> TO_ADD = new ArrayList<>();
         private static final List<Integer> TO_REMOVE = new ArrayList<>();
         private static boolean isUpdating = false;
@@ -72,25 +72,40 @@ public class HologramRenderer {
                 isUpdating = false;
             }
         }
-
-        public static void renderAll(PoseStack poseStack, MultiBufferSource buffer) {
+        public static void handleTrackEntities(Hologram hologram, float tickDelta){
+            if (hologram.trackedEntityId != null && MC.level != null) {
+                var entity = MC.level.getEntity(hologram.trackedEntityId);
+                if (entity != null) {
+                    hologram.x = entity.getPosition(tickDelta).x + hologram.offsetFromEntity.x;
+                    hologram.y = entity.getPosition(tickDelta).y + hologram.offsetFromEntity.y;
+                    hologram.z = entity.getPosition(tickDelta).z + hologram.offsetFromEntity.z;
+                }
+            }
+        }
+        public static List<Hologram> getHologramList(){
+            List<Hologram> hologramList = new ArrayList<>(HOLOGRAMS.values());
+            return hologramList;
+        }
+        public static void renderAll(PoseStack poseStack, MultiBufferSource buffer, float tickDelta) {
             if (MC.player == null || MC.level == null) return;
-
             List<Hologram> hologramsToRender = new ArrayList<>(HOLOGRAMS.values());
 
             for (Hologram hologram : hologramsToRender) {
+                handleTrackEntities(hologram,tickDelta);
                 if(!hologram.renderOnTop){
+                    hologram.tickDelta = tickDelta;
                     renderHologram(hologram, poseStack, buffer);
                 }
             }
         }
-        public static void renderAllForce(PoseStack poseStack, MultiBufferSource buffer) {
+        public static void renderAllForce(PoseStack poseStack, MultiBufferSource buffer, float tickDelta) {
             if (MC.player == null || MC.level == null) return;
 
             List<Hologram> hologramsToRender = new ArrayList<>(HOLOGRAMS.values());
 
             for (Hologram hologram : hologramsToRender) {
                 if(hologram.renderOnTop){
+                    hologram.tickDelta = tickDelta;
                     renderHologram(hologram, poseStack, buffer);
                 }
             }
@@ -104,14 +119,7 @@ public class HologramRenderer {
                 return;
             }
 
-            if (hologram.trackedEntityId != null && MC.level != null) {
-                var entity = MC.level.getEntity(hologram.trackedEntityId);
-                if (entity != null) {
-                    hologram.x = entity.getX() + hologram.offsetFromEntity.x;
-                    hologram.y = entity.getY() + hologram.offsetFromEntity.y;
-                    hologram.z = entity.getZ() + hologram.offsetFromEntity.z;
-                }
-            }
+
 
             if (hologram.updateCallback != null) {
                 hologram.updateCallback.accept(hologram);
@@ -146,16 +154,9 @@ public class HologramRenderer {
             if (dot < 0 && distance > 5.0f) {
                 return;
             }
-            float screenSize = (hologram.scale / 40f) / distance;
-            if (screenSize < 0.001f) {
-                return;
-            }
             if (!hologram.alwaysRender && distance > hologram.renderDistance) {
                 return;
             }
-
-
-
             poseStack.pushPose();
 
             poseStack.translate(

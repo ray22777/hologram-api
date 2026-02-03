@@ -25,7 +25,7 @@ public final class HologramAPIMod {
             PoseStack poseStack = event.getPoseStack();
             var minecraft = Minecraft.getInstance();
             MultiBufferSource.BufferSource bufferSource = minecraft.renderBuffers().bufferSource();
-            HologramAPI.render(poseStack, bufferSource);
+            HologramAPI.render(poseStack, bufferSource, event.getPartialTick());
 
         }
 //        if (event.getStage() == RenderLevelStageEvent.Stage.AFTER_SOLID_BLOCKS) {

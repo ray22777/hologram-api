@@ -18,6 +18,7 @@ public class Hologram {
     public float renderDistance = 50.0f;
     public int lifetime = 0; // 0 = infinite
     public int age = 0;
+    public float tickDelta;
     public Integer trackedEntityId = null;
     public Vec3 offsetFromEntity = Vec3.ZERO;
     public BillboardMode billboardMode = BillboardMode.CENTER;
@@ -55,6 +56,8 @@ public class Hologram {
         this.component = Component.literal(text);
         return this;
     }
+
+
 
     public Hologram scale(float scale) {
         this.scale = scale;
