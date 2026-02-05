@@ -11,13 +11,14 @@ public class Hologram {
     public Component component;
     public double x, y, z;
     public float scale = 1.0f;
-//    public int color = 0xFFFFFF; //use textcomponents instead
+    //    public int color = 0xFFFFFF; //use textcomponents instead
     public boolean shadow = true;
     public boolean visible = true;
     public boolean alwaysRender = false;
     public float renderDistance = 50.0f;
     public int lifetime = 0; // 0 = infinite
     public int age = 0;
+    public float tickDelta;
     public Integer trackedEntityId = null;
     public Vec3 offsetFromEntity = Vec3.ZERO;
     public BillboardMode billboardMode = BillboardMode.CENTER;
@@ -55,6 +56,8 @@ public class Hologram {
         this.component = Component.literal(text);
         return this;
     }
+
+
 
     public Hologram scale(float scale) {
         this.scale = scale;
