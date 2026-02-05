@@ -11,10 +11,10 @@ public final class HologramAPIClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         WorldRenderEvents.AFTER_ENTITIES.register(context -> {
-            HologramAPI.render(context.matrixStack(), context.consumers());
+            HologramAPI.render(context.matrixStack(), context.consumers(),context.tickCounter().getGameTimeDeltaPartialTick(false));
         });
         WorldRenderEvents.END.register(context -> {
-            HologramAPI.renderForce(context.matrixStack(), context.consumers());
+            HologramAPI.renderForce(context.matrixStack(), context.consumers(),context.tickCounter().getGameTimeDeltaPartialTick(false));
         });
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             HologramAPI.update();
