@@ -1,6 +1,6 @@
   {
   "required": true,
-  "package": "net.ray.mixin",
+  "package": "net.ray.HologramAPI.mixin",
   "compatibilityLevel": "JAVA_21",
   "minVersion": "0.8",
   "client": [
