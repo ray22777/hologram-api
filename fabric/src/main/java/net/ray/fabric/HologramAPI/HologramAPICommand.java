@@ -58,7 +58,7 @@ public class HologramAPICommand {
                                       double x, double y, double z, boolean renderOnTop) {
         try {
             Component comp = ComponentUtils.parseColorCodes(text);
-            HologramAPI.create(comp, x, y, z).renderOnTop(renderOnTop);
+            HologramAPI.create(comp, x, y, z).renderOnTop(renderOnTop).shadow(true);
 
             context.getSource().sendFeedback(
                     Component.literal("Created hologram: '")
