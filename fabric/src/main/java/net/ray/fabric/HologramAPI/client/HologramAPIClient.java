@@ -12,8 +12,8 @@ public final class HologramAPIClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         WorldRenderEvents.AFTER_ENTITIES.register(context -> {
-            float partialTick = Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(false);
-            HologramAPI.render(context.matrices(), context.consumers(),partialTick);
+            float tickDelta = Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(false);
+            HologramAPI.render(context.matrices(), context.consumers(),tickDelta);
         });
 //        WorldRenderEvents.END_MAIN.register((context) -> {
 //            HologramAPI.renderForce(context.matrices(), context.consumers());

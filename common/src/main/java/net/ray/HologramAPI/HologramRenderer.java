@@ -2,6 +2,7 @@ package net.ray.HologramAPI;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 
@@ -12,15 +13,22 @@ import com.mojang.math.Axis;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.util.FormattedCharSequence;
 import org.joml.Matrix4f;
+import org.joml.Matrix4f;
 import org.joml.Vector3f;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static net.minecraft.client.gui.Font.DisplayMode.*;
+
 
 public class HologramRenderer {
     private static final Minecraft MC = Minecraft.getInstance();
 
     public static class HologramManager {
-        private static final Map<Integer, Hologram> HOLOGRAMS = new HashMap<>();
+        public static final Map<Integer, Hologram> HOLOGRAMS = new HashMap<>();
         private static final List<Hologram> TO_ADD = new ArrayList<>();
         private static final List<Integer> TO_REMOVE = new ArrayList<>();
         private static boolean isUpdating = false;
@@ -61,6 +69,7 @@ public class HologramRenderer {
 
         public static void updateAll() {
             isUpdating = true;
+
             try {
                 processPendingRemovals();
 
@@ -82,16 +91,38 @@ public class HologramRenderer {
             }
         }
 
-        public static void renderAll(PoseStack poseStack, MultiBufferSource buffer,float partialTick) {
+        public static void handleTrackEntities(Hologram hologram, float tickDelta) {
+            if (hologram.trackedEntityId != null && MC.level != null) {
+                var entity = MC.level.getEntity(hologram.trackedEntityId);
+                if (entity != null) {
+                    hologram.x = entity.getPosition(tickDelta).x + hologram.offsetFromEntity.x;
+                    hologram.y = entity.getPosition(tickDelta).y + hologram.offsetFromEntity.y;
+                    hologram.z = entity.getPosition(tickDelta).z + hologram.offsetFromEntity.z;
+                }
+            }
+        }
+
+        public static List<Hologram> getHologramList() {
+            List<Hologram> hologramList = new ArrayList<>(HOLOGRAMS.values());
+            return hologramList;
+        }
+
+        public static void renderAll(PoseStack poseStack, MultiBufferSource buffer, float tickDelta) {
             if (MC.player == null || MC.level == null) return;
             ClientLevel world = MC.level;
             List<Hologram> hologramsToRender = new ArrayList<>(HOLOGRAMS.values());
+            Camera camera = MC.gameRenderer.getMainCamera();
+            if (camera == null) return;
+
 
             for (Hologram hologram : hologramsToRender) {
-                if(hologram.world != world) continue;
-                renderHologram(hologram, poseStack, buffer,partialTick);
+                if (hologram.world != world) continue;
+                handleTrackEntities(hologram, tickDelta);
+                hologram.tickDelta = tickDelta;
+                renderHologram(hologram, poseStack, buffer, tickDelta);
             }
         }
+
         private static void updateHologram(Hologram hologram) {
             hologram.age++;
 
@@ -100,15 +131,6 @@ public class HologramRenderer {
                 return;
             }
 
-            if (hologram.trackedEntityId != null && MC.level != null) {
-
-                var entity = MC.level.getEntity(hologram.trackedEntityId);
-                if (entity != null) {
-                    hologram.x = entity.getX() + hologram.offsetFromEntity.x;
-                    hologram.y = entity.getY() + hologram.offsetFromEntity.y;
-                    hologram.z = entity.getZ() + hologram.offsetFromEntity.z;
-                }
-            }
 
             if (hologram.updateCallback != null) {
                 hologram.updateCallback.accept(hologram);
@@ -118,12 +140,12 @@ public class HologramRenderer {
         private static void processPendingRemovals() {
             for (int id : TO_REMOVE) {
                 HOLOGRAMS.remove(id);
+                }
+                TO_REMOVE.clear();
             }
-            TO_REMOVE.clear();
         }
-    }
 
-    public static void renderHologram(Hologram hologram, PoseStack poseStack, MultiBufferSource buffer, float partialTick) {
+    public static void renderHologram(Hologram hologram, PoseStack poseStack, MultiBufferSource buffer, float tickDelta) {
 
         if (!hologram.visible || hologram.scale <= 0.001f) return;
         if (hologram.component == null) return;
@@ -151,7 +173,11 @@ public class HologramRenderer {
             if (!hologram.alwaysRender && distance > hologram.renderDistance) {
                 return;
             }
+
+
+
             poseStack.pushPose();
+
             poseStack.translate(
                     hologram.x - cameraPos.x(),
                     hologram.y - cameraPos.y(),
@@ -162,7 +188,7 @@ public class HologramRenderer {
                 hologram.renderCallback.accept(hologram);
             }
             if (hologram.renderCallbackPartialTick != null) {
-                hologram.renderCallbackPartialTick.accept(hologram, partialTick);
+                hologram.renderCallbackPartialTick.accept(hologram, tickDelta);
             }
             applyBillboard(poseStack, camera, hologram.billboardMode);
             float dynamicScale = hologram.scale * 0.025f;

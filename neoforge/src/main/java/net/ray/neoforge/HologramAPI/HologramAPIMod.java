@@ -25,14 +25,15 @@ public final class HologramAPIMod {
             PoseStack poseStack = event.getPoseStack();
             var minecraft = Minecraft.getInstance();
             MultiBufferSource.BufferSource bufferSource = minecraft.renderBuffers().bufferSource();
-            HologramAPI.render(poseStack, bufferSource);
+
+            HologramAPI.render(poseStack, bufferSource ,event.getPartialTick().getGameTimeDeltaPartialTick(false));
 
         }
         if(event.getStage() == RenderLevelStageEvent.Stage.AFTER_LEVEL){
             PoseStack poseStack = event.getPoseStack();
             var minecraft = Minecraft.getInstance();
             MultiBufferSource.BufferSource bufferSource = minecraft.renderBuffers().bufferSource();
-            HologramAPI.renderForce(poseStack, bufferSource);
+            HologramAPI.renderForce(poseStack, bufferSource,event.getPartialTick().getGameTimeDeltaPartialTick(false));
         }
     }
 
