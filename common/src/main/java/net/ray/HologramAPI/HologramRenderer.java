@@ -9,7 +9,6 @@ import net.minecraft.client.gui.Font;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.network.chat.Component;
 import com.mojang.math.Axis;
-import net.ray.HologramAPI.mixin.GameRendererMixin;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 

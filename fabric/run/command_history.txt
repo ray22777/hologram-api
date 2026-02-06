@@ -20,3 +20,4 @@
 /hologram create "&lniggas" 0 80 0 true
 /hologram create "&TEST" 0 80 0 true
 /hologram create "&TEsssssssssST" 0 80 0 false
+/hologram create test 0 80 0 true
