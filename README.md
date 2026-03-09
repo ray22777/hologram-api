@@ -1,6 +1,13 @@
 # Hologram API
 
-A simple API for supporting in-world text rendering on the client side. This mod was created to simplify the creation process of [Better Damage Indicator](https://modrinth.com/mod/better-damage-indicator). Feel free to use this mod for your projects if it suits your needs.
+A simple API for supporting in-world text rendering on the client side. This mod was created to simplify the creation process of my mods. Feel free to use this mod for your projects if it suits your needs.
+
+### List of my mods using this API:
+| **Modrinth**     |**Curseforge**   |
+| ------------ |------------ |
+|[Holo Damage Indicator](https://modrinth.com/mod/holo-damage-indicator)|[Holo Damage Indicator](https://www.curseforge.com/minecraft/mc-mods/holo-damage-indicator)| 
+|[Holo Health Indicator](https://modrinth.com/mod/holo-health-indicator)|[Holo Health Indicator](https://www.curseforge.com/minecraft/mc-mods/holo-health-indicator)|
+|[Holo Items](https://modrinth.com/mod/holo-items)|[Holo Items](https://www.curseforge.com/minecraft/mc-mods/holo-items)|
 
 ![demo](https://cdn.modrinth.com/data/cached_images/7ff004424d8c36154cbe82d7f84dbb19128bf2e7.png)
 
