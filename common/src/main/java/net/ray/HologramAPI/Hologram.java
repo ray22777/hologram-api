@@ -1,7 +1,11 @@
 package net.ray.HologramAPI;
 
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.Vec3;
+
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 public class Hologram {
@@ -15,7 +19,7 @@ public class Hologram {
     public boolean shadow = true;
     public boolean visible = true;
     public boolean alwaysRender = false;
-    public float renderDistance = 50.0f;
+    public int renderDistance = 64;
     public int lifetime = 0; // 0 = infinite
     public int age = 0;
     public Integer trackedEntityId = null;
@@ -24,7 +28,12 @@ public class Hologram {
     public TextAlignment alignment = TextAlignment.CENTER;
     public Consumer<Hologram> updateCallback = null;
     public Consumer<Hologram> renderCallback = null;
+    public java.util.function.BiConsumer<Hologram, Float> renderCallbackPartialTick = null;
     public boolean renderOnTop = false;
+    public int backgroundColor = 0x40000000;
+    public boolean background = false;
+    public ClientLevel world = null;
+    public String tag; //used for deletion of tagged holograms
 
     public enum BillboardMode {
         CENTER, VERTICAL, HORIZONTAL, FIXED
@@ -66,8 +75,20 @@ public class Hologram {
 //        return this;
 //    }
 
+    public Hologram backgroundColor(int color) {
+        this.backgroundColor = color;
+        return this;
+    }
+    public Hologram background(boolean background){
+        this.background = background;
+        return this;
+    }
     public Hologram shadow(boolean shadow) {
         this.shadow = shadow;
+        return this;
+    }
+    public Hologram tag(String tag) {
+        this.tag = tag;
         return this;
     }
     public Hologram renderOnTop(boolean renderOnTop) {
@@ -85,11 +106,14 @@ public class Hologram {
         return this;
     }
 
-    public Hologram renderDistance(float distance) {
+    public Hologram renderDistance(int distance) {
         this.renderDistance = distance;
         return this;
     }
-
+    public Hologram renderDistance(float distance) {
+        this.renderDistance = (int)distance; //keep for backwards compatible
+        return this;
+    }
     public Hologram lifetime(int ticks) {
         this.lifetime = ticks;
         return this;
@@ -120,6 +144,10 @@ public class Hologram {
         this.renderCallback = callback;
         return this;
     }
+    public Hologram onRender(BiConsumer<Hologram, Float> callback) {
+        this.renderCallbackPartialTick = callback;
+        return this;
+    }
     public float alpha = 1.0f;
 
     public Hologram setAlpha(float alpha) {
@@ -131,7 +159,7 @@ public class Hologram {
         this.alpha = Math.max(0, Math.min(255, alpha)) / 255f;
         return this;
     }
-
+    @Deprecated(forRemoval = true) //Useless, use alpha instead
     public Hologram fade(float progress) {
         this.alpha = Math.max(0, Math.min(1, this.alpha * progress));
         return this;
@@ -140,7 +168,4 @@ public class Hologram {
         HologramRenderer.HologramManager.removeHologram(this.id);
     }
 
-    public void update() {
-        HologramRenderer.HologramManager.updateAll();
-    }
 }

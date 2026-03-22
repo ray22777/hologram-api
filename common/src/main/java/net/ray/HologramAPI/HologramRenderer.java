@@ -1,16 +1,18 @@
 package net.ray.HologramAPI;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 
 
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.network.chat.Component;
 import com.mojang.math.Axis;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.util.FormattedCharSequence;
+import org.joml.Matrix4f;
 import org.joml.Vector3f;
-import org.lwjgl.opengl.GL11;
 
 import java.util.*;
 
@@ -46,10 +48,19 @@ public class HologramRenderer {
                 HOLOGRAMS.clear();
             }
         }
+        public static void clearTagged(String tag) {
+            if (isUpdating) {
+                HOLOGRAMS.values().stream()
+                        .filter(h -> tag.equals(h.tag))
+                        .map(h -> h.id)
+                        .forEach(TO_REMOVE::add);
+            } else {
+                HOLOGRAMS.values().removeIf(h -> tag.equals(h.tag));
+            }
+        }
 
         public static void updateAll() {
             isUpdating = true;
-
             try {
                 processPendingRemovals();
 
@@ -71,13 +82,14 @@ public class HologramRenderer {
             }
         }
 
-        public static void renderAll(PoseStack poseStack, MultiBufferSource buffer) {
+        public static void renderAll(PoseStack poseStack, MultiBufferSource buffer,float partialTick) {
             if (MC.player == null || MC.level == null) return;
-
+            ClientLevel world = MC.level;
             List<Hologram> hologramsToRender = new ArrayList<>(HOLOGRAMS.values());
 
             for (Hologram hologram : hologramsToRender) {
-                    renderHologram(hologram, poseStack, buffer);
+                if(hologram.world != world) continue;
+                renderHologram(hologram, poseStack, buffer,partialTick);
             }
         }
         private static void updateHologram(Hologram hologram) {
@@ -89,6 +101,7 @@ public class HologramRenderer {
             }
 
             if (hologram.trackedEntityId != null && MC.level != null) {
+
                 var entity = MC.level.getEntity(hologram.trackedEntityId);
                 if (entity != null) {
                     hologram.x = entity.getX() + hologram.offsetFromEntity.x;
@@ -110,7 +123,8 @@ public class HologramRenderer {
         }
     }
 
-    public static void renderHologram(Hologram hologram, PoseStack poseStack, MultiBufferSource buffer) {
+    public static void renderHologram(Hologram hologram, PoseStack poseStack, MultiBufferSource buffer, float partialTick) {
+
         if (!hologram.visible || hologram.scale <= 0.001f) return;
         if (hologram.component == null) return;
 
@@ -137,11 +151,7 @@ public class HologramRenderer {
             if (!hologram.alwaysRender && distance > hologram.renderDistance) {
                 return;
             }
-
-
-
             poseStack.pushPose();
-
             poseStack.translate(
                     hologram.x - cameraPos.x(),
                     hologram.y - cameraPos.y(),
@@ -151,22 +161,71 @@ public class HologramRenderer {
             if (hologram.renderCallback != null) {
                 hologram.renderCallback.accept(hologram);
             }
-
+            if (hologram.renderCallbackPartialTick != null) {
+                hologram.renderCallbackPartialTick.accept(hologram, partialTick);
+            }
             applyBillboard(poseStack, camera, hologram.billboardMode);
+            float dynamicScale = hologram.scale * 0.025f;
 
-            float dynamicScale = hologram.scale / 40f;
-            poseStack.scale(-dynamicScale, -dynamicScale, dynamicScale);
-
+            poseStack.scale(-dynamicScale, -dynamicScale, -dynamicScale);
             renderComponent(hologram, poseStack, buffer, distance);
-
             poseStack.popPose();
 
         } catch (Exception e) {
-            System.err.println("Error rendering hologram: " + e.getMessage());
+            HologramModInitializer.getLogger().warn("Error rendering hologram: " + e.getMessage());
             e.printStackTrace();
         }
     }
+    private static void renderComponent(Hologram hologram, PoseStack poseStack,
+                                        MultiBufferSource buffer, float distance) {
+        Font font = MC.font;
+        if (font == null) return;
 
+        int alphaByte = (int)(hologram.alpha * 255);
+        int finalColor = (alphaByte << 24) | 0x00FFFFFF;
+        Font.DisplayMode displayMode = hologram.renderOnTop
+                ? Font.DisplayMode.SEE_THROUGH
+                : Font.DisplayMode.POLYGON_OFFSET;
+
+        List<FormattedCharSequence> rawLines = font.split(hologram.component, Integer.MAX_VALUE);
+        List<FormattedCharSequence> lines = new ArrayList<>();
+        int maxWidth = 0;
+        for (FormattedCharSequence line : rawLines) {
+            int w = font.width(line);
+            maxWidth = Math.max(maxWidth, w);
+            lines.add(line);
+        }
+
+        int lineHeight = 9 + 1;
+        int totalHeight = lines.size() * lineHeight;
+
+        Matrix4f pose = poseStack.last().pose();
+        pose.translate(1.0F - maxWidth / 2.0F, -totalHeight, 0.0F);
+        if (hologram.background) {
+            int bgAlpha = (int)(hologram.alpha * ((hologram.backgroundColor >> 24) & 0xFF));
+            int bgColor = (bgAlpha << 24) | (hologram.backgroundColor & 0x00FFFFFF);
+            VertexConsumer vertexConsumer = buffer.getBuffer(
+                    hologram.renderOnTop ? RenderType.textBackgroundSeeThrough() : RenderType.textBackground()
+            );
+            vertexConsumer.addVertex(pose, -1.0F, -1.0F, 0.0F).setColor(bgColor).setLight(15728880);
+            vertexConsumer.addVertex(pose, -1.0F, totalHeight, 0.0F).setColor(bgColor).setLight(15728880);
+            vertexConsumer.addVertex(pose, maxWidth, totalHeight, 0.0F).setColor(bgColor).setLight(15728880);
+            vertexConsumer.addVertex(pose, maxWidth, -1.0F, 0.0F).setColor(bgColor).setLight(15728880);
+        }
+
+        float y = 0;
+        for (FormattedCharSequence line : lines) {
+            int lineWidth = font.width(line);
+            float x = switch (hologram.alignment) {
+                case LEFT -> 0;
+                case RIGHT -> maxWidth - lineWidth;
+                case CENTER -> maxWidth / 2f - lineWidth / 2f;
+            };
+            font.drawInBatch(line, x, y, finalColor, hologram.shadow,
+                    pose, buffer, displayMode, 0, 15728880);
+            y += lineHeight;
+        }
+    }
     private static void applyBillboard(PoseStack poseStack, net.minecraft.client.Camera camera,
                                        Hologram.BillboardMode mode) {
         switch (mode) {
@@ -184,60 +243,6 @@ public class HologramRenderer {
                 break;
         }
     }
-
-    private static void renderComponent(Hologram hologram, PoseStack poseStack,
-                                        MultiBufferSource buffer, float distance) {
-        Font font = MC.font;
-        if (font == null) return;
-
-        int lineWidth = font.width(hologram.component);
-        float xOffset = getXOffset(lineWidth, hologram.alignment);
-        int alphaByte = (int)(hologram.alpha * 255);
-        int finalColor = (alphaByte << 24) |  0x00FFFFFF;
-        poseStack.pushPose();
-        Font.DisplayMode displayMode;
-        if(hologram.renderOnTop){
-            displayMode = Font.DisplayMode.SEE_THROUGH;
-        }
-        else{
-            displayMode = Font.DisplayMode.NORMAL;
-        }
-        if (hologram.shadow) {
-            poseStack.pushPose();
-            poseStack.translate(0, 0, +0.1f);
-            Component shadowComponent = ComponentUtils.darkenComponent(hologram.component, 0.70f);
-
-            int shadowAlpha = (int)(hologram.alpha * 0.7f * 255);
-            int shadowColor = (shadowAlpha << 24) | (0x000000 & 0x00FFFFFF);
-
-            font.drawInBatch(
-                    shadowComponent,
-                    xOffset + 1, 1,
-                    shadowColor,
-                    false,
-                    poseStack.last().pose(),
-                    buffer,
-                    displayMode,
-                    0,
-                    15728880
-            );
-            poseStack.popPose();
-        }
-
-        font.drawInBatch(
-                hologram.component,
-                xOffset, 0,
-                finalColor,
-                false,
-                poseStack.last().pose(),
-                buffer,
-                displayMode,
-                0,
-                15728880
-        );
-        poseStack.popPose();
-    }
-
 
     private static float getXOffset(int lineWidth, Hologram.TextAlignment alignment) {
         switch (alignment) {

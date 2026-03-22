@@ -4,14 +4,16 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.rendering.v1.world.WorldRenderEvents;
+import net.minecraft.client.Minecraft;
 import net.ray.HologramAPI.HologramAPI;
 import net.ray.fabric.HologramAPI.HologramAPICommand;
 
 public final class HologramAPIClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
-        WorldRenderEvents.END_MAIN.register(context -> {
-            HologramAPI.render(context.matrices(), context.consumers());
+        WorldRenderEvents.AFTER_ENTITIES.register(context -> {
+            float partialTick = Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(false);
+            HologramAPI.render(context.matrices(), context.consumers(),partialTick);
         });
 //        WorldRenderEvents.END_MAIN.register((context) -> {
 //            HologramAPI.renderForce(context.matrices(), context.consumers());
