@@ -10,7 +10,7 @@ import net.minecraft.client.renderer.LevelRenderer;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
 import com.mojang.math.Axis;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.level.LightLayer;
@@ -156,13 +156,14 @@ public class HologramRenderer {
             var camera = MC.gameRenderer.getMainCamera();
             if (camera == null) return;
 
-            Vector3f cameraPos = camera.getPosition().toVector3f();
+            Vector3f cameraPos = camera.position().toVector3f();
 
             float dx = (float)hologram.x - cameraPos.x();
             float dy = (float)hologram.y - cameraPos.y();
             float dz = (float)hologram.z - cameraPos.z();
             float distance = (float)Math.sqrt(dx*dx + dy*dy + dz*dz);
-            Vector3f cameraForward = camera.getLookVector();
+            Vector3f cameraForward = new Vector3f();
+            camera.forwardVector().get(cameraForward);
             Vector3f toHologram = new Vector3f(dx, dy, dz).normalize();
             float dot = cameraForward.dot(toHologram);
             if (dot < 0 && distance > 5.0f) {
@@ -234,7 +235,7 @@ public class HologramRenderer {
             int bgAlpha = (int)(hologram.alpha * ((hologram.backgroundColor >> 24) & 0xFF));
             int bgColor = (bgAlpha << 24) | (hologram.backgroundColor & 0x00FFFFFF);
             VertexConsumer vertexConsumer = buffer.getBuffer(
-                    hologram.renderOnTop ? RenderType.textBackgroundSeeThrough() : RenderType.textBackground()
+                    hologram.renderOnTop ? RenderTypes.textBackgroundSeeThrough() : RenderTypes.textBackground()
             );
             vertexConsumer.addVertex(pose, -1.0F, -1.0F, 0.0F).setColor(bgColor).setLight(15728880);
             vertexConsumer.addVertex(pose, -1.0F, totalHeight, 0.0F).setColor(bgColor).setLight(15728880);
@@ -272,14 +273,14 @@ public class HologramRenderer {
                                        Hologram.BillboardMode mode) {
         switch (mode) {
             case CENTER:
-                poseStack.mulPose(Axis.YP.rotationDegrees(-camera.getYRot()));
-                poseStack.mulPose(Axis.XP.rotationDegrees(camera.getXRot()));
+                poseStack.mulPose(Axis.YP.rotationDegrees(-camera.yRot()));
+                poseStack.mulPose(Axis.XP.rotationDegrees(camera.xRot()));
                 break;
             case VERTICAL:
-                poseStack.mulPose(Axis.YP.rotationDegrees(-camera.getYRot()));
+                poseStack.mulPose(Axis.YP.rotationDegrees(-camera.yRot()));
                 break;
             case HORIZONTAL:
-                poseStack.mulPose(Axis.XP.rotationDegrees(camera.getXRot()));
+                poseStack.mulPose(Axis.XP.rotationDegrees(camera.xRot()));
                 break;
             case FIXED:
                 break;
