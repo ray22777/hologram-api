@@ -19,6 +19,7 @@ type = "required"
 versionRange = "[21,)"
 ordering = "NONE"
 side = "BOTH"
+mandatory = true
 
 [[dependencies.hologram_api]]
 modId = "minecraft"
@@ -26,6 +27,7 @@ type = "required"
 versionRange = "[1.21,)"
 ordering = "NONE"
 side = "BOTH"
+mandatory = true
 
 [[mixins]]
 config = "hologram_api.mixins.json"

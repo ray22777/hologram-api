@@ -5,13 +5,15 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
-
-
 import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.client.renderer.LevelRenderer;
+import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
 import com.mojang.math.Axis;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.FormattedCharSequence;
+import net.minecraft.world.level.LightLayer;
 import org.joml.Matrix4f;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
@@ -194,6 +196,7 @@ public class HologramRenderer {
             float dynamicScale = hologram.scale * 0.025f;
 
             poseStack.scale(-dynamicScale, -dynamicScale, -dynamicScale);
+
             renderComponent(hologram, poseStack, buffer, distance);
             poseStack.popPose();
 
@@ -204,7 +207,7 @@ public class HologramRenderer {
     }
     private static void renderComponent(Hologram hologram, PoseStack poseStack,
                                         MultiBufferSource buffer, float distance) {
-        Font font = MC.font;
+        Font font = hologram.font;
         if (font == null) return;
 
         int alphaByte = (int)(hologram.alpha * 255);
@@ -226,7 +229,7 @@ public class HologramRenderer {
         int totalHeight = lines.size() * lineHeight;
 
         Matrix4f pose = poseStack.last().pose();
-        pose.translate(1.0F - maxWidth / 2.0F, -totalHeight, 0.0F);
+        pose.translate(1.0F - maxWidth / 2.0F, -totalHeight / 2.0F, 0.0F);
         if (hologram.background) {
             int bgAlpha = (int)(hologram.alpha * ((hologram.backgroundColor >> 24) & 0xFF));
             int bgColor = (bgAlpha << 24) | (hologram.backgroundColor & 0x00FFFFFF);
@@ -238,17 +241,30 @@ public class HologramRenderer {
             vertexConsumer.addVertex(pose, maxWidth, totalHeight, 0.0F).setColor(bgColor).setLight(15728880);
             vertexConsumer.addVertex(pose, maxWidth, -1.0F, 0.0F).setColor(bgColor).setLight(15728880);
         }
-
+        int lightLevel;
+        if(hologram.lightLevel == null){
+            lightLevel = LightTexture.lightCoordsWithEmission(
+                    MC.level.getLightEngine().getRawBrightness(
+                            new BlockPos((int)hologram.x, (int)hologram.y, (int)hologram.z), 0
+                    ) << 4, 7 //minimum light level is 7
+            );
+        }
+        else{
+            lightLevel = hologram.lightLevel;
+        }
         float y = 0;
         for (FormattedCharSequence line : lines) {
             int lineWidth = font.width(line);
+
+
             float x = switch (hologram.alignment) {
                 case LEFT -> 0;
                 case RIGHT -> maxWidth - lineWidth;
                 case CENTER -> maxWidth / 2f - lineWidth / 2f;
             };
+
             font.drawInBatch(line, x, y, finalColor, hologram.shadow,
-                    pose, buffer, displayMode, 0, 15728880);
+                    pose, buffer, displayMode, 0, lightLevel);
             y += lineHeight;
         }
     }

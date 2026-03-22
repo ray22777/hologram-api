@@ -49,28 +49,32 @@ public class HologramAPICommand {
                 )
                 .then(ClientCommandManager.literal("clearAll")
                         .executes(HologramAPICommand::clearAll))
-                .then(ClientCommandManager.literal("test")
-                        .executes(HologramAPICommand::test))
+//                .then(ClientCommandManager.literal("test")
+//                        .executes(HologramAPICommand::test))
         );
     }
     private static int clearAll(CommandContext<FabricClientCommandSource> context) {
 //        HologramAPI.clearAll();
-        HologramAPI.clearTagged("test");
+        HologramAPI.clearTagged("command");
         return 1;
     }
-    private static int test(CommandContext<FabricClientCommandSource> context) {
-        Component component = Component.literal("Hello World!").withStyle(ChatFormatting.GREEN); //create a minecraft component
-        Hologram hologram = HologramAPI.create(component, 0,80,0).shadow(true).scale(2).renderDistance(20); //creating the hologram
-        hologram.onRender((h,pt)-> { //setting the animation (updates 20 times a second)
-            h.y = 80 + pt *2; //example animation to rise one block up every tick.
-        });
-        return 1;
-    }
+
+//    private static int test(CommandContext<FabricClientCommandSource> context) {
+//        Component component = Component.literal("Hello World!").withStyle(ChatFormatting.GREEN); //create a minecraft component
+//        Hologram hologram = HologramAPI.create(component, 0,80,0).lifetime(40).shadow(true).scale(2).renderDistance(20); //creating the hologram
+//        hologram.onRender((h,pt)-> { //setting the animation (updates 20 times a second)
+//            h.scale = h.scale - 0.02f; //example animation to rise one block up every tick.
+//        });
+//        for(Hologram holo : HologramAPI.getList()){
+//            holo.scale(10);
+//        }
+//        return 1;
+//    }
     private static int createHologram(CommandContext<FabricClientCommandSource> context, String text,
                                       double x, double y, double z, boolean renderOnTop) {
         try {
             Component comp = ComponentUtils.parseColorCodes(text);
-            HologramAPI.create(comp, x, y, z).renderOnTop(renderOnTop).shadow(true);
+            HologramAPI.create(comp, x, y, z).renderOnTop(renderOnTop).shadow(true).tag("command");
 
             context.getSource().sendFeedback(
                     Component.literal("Created hologram: '")

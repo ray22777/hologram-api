@@ -1,6 +1,9 @@
 package net.ray.HologramAPI;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Font;
 import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.Vec3;
@@ -15,6 +18,7 @@ public class Hologram {
     public Component component;
     public double x, y, z;
     public float scale = 1.0f;
+    public Integer lightLevel = null; //set hologram light level, used for brightness. Leave null to automatically calculate from hologram position
     //    public int color = 0xFFFFFF; //use textcomponents instead
     public boolean shadow = true;
     public boolean visible = true;
@@ -35,7 +39,7 @@ public class Hologram {
     public boolean background = false;
     public ClientLevel world = null;
     public String tag; //used for deletion of tagged holograms
-
+    public Font font = Minecraft.getInstance().font;
     public enum BillboardMode {
         CENTER, VERTICAL, HORIZONTAL, FIXED
     }
@@ -104,6 +108,11 @@ public class Hologram {
         return this;
     }
 
+    public Hologram font(Font font) {
+        this.font = font;
+        return this;
+    }
+
     public Hologram alwaysRender(boolean alwaysRender) {
         this.alwaysRender = alwaysRender;
         return this;
@@ -127,7 +136,38 @@ public class Hologram {
         this.offsetFromEntity = offset;
         return this;
     }
+    public Hologram lightLevel(int lightLevel) {
+        this.lightLevel = lightLevel;
+        return this;
+    }
 
+    public Hologram lightLevel(Integer lightLevel) {
+        this.lightLevel = lightLevel; // pass null to reset to light based on coords
+        return this;
+    }
+
+    public Hologram trackEntity(int entityId) {
+        this.trackedEntityId = entityId;
+        this.offsetFromEntity = Vec3.ZERO;
+        return this;
+    }
+
+    public Hologram offset(double x, double y, double z) {
+        this.offsetFromEntity = new Vec3(x, y, z);
+        return this;
+    }
+
+    public Hologram position(double x, double y, double z) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        return this;
+    }
+
+    public Hologram world(ClientLevel world) {
+        this.world = world;
+        return this;
+    }
     public Hologram billboardMode(BillboardMode mode) {
         this.billboardMode = mode;
         return this;

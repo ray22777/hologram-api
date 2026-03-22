@@ -9,12 +9,14 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
+import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RegisterClientCommandsEvent;
 import net.ray.HologramAPI.ComponentUtils;
 import net.ray.HologramAPI.HologramAPI;
-@EventBusSubscriber(modid = "hologram_api", bus = EventBusSubscriber.Bus.GAME)
+
+@EventBusSubscriber(modid = "hologram_api", value = Dist.CLIENT)
 public class HologramAPICommand {
 
     @SubscribeEvent
@@ -56,15 +58,12 @@ public class HologramAPICommand {
 
     private static int clearAll(CommandContext<CommandSourceStack> context) {
         try {
-            HologramAPI.clearAll();
-
+            HologramAPI.clearTagged("command");
             context.getSource().sendSuccess(
-                    () -> Component.literal("Cleared all holograms").withStyle(ChatFormatting.GREEN),
+                    () -> Component.literal("Cleared command holograms").withStyle(ChatFormatting.GREEN),
                     false
             );
-
             return 1;
-
         } catch (Exception e) {
             context.getSource().sendFailure(
                     Component.literal("Error clearing holograms").withStyle(ChatFormatting.RED)
@@ -78,8 +77,7 @@ public class HologramAPICommand {
                                       double x, double y, double z, boolean renderOnTop) {
         try {
             Component comp = ComponentUtils.parseColorCodes(text);
-            HologramAPI.create(comp, x, y, z).renderOnTop(renderOnTop);
-
+            HologramAPI.create(comp, x, y, z).renderOnTop(renderOnTop).shadow(true).tag("command");
             context.getSource().sendSuccess(
                     () -> Component.literal("Created hologram: '")
                             .append(Component.literal(text).withStyle(ChatFormatting.AQUA))
@@ -87,9 +85,7 @@ public class HologramAPICommand {
                             .withStyle(ChatFormatting.GREEN),
                     false
             );
-
             return 1;
-
         } catch (Exception e) {
             context.getSource().sendFailure(
                     Component.literal("Error creating hologram").withStyle(ChatFormatting.RED)

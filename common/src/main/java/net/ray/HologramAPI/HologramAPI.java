@@ -47,6 +47,9 @@ public class HologramAPI {
         return HologramRenderer.HologramManager.getHologramList();
     }
 
+    public static Hologram get(int id) {
+        return HologramRenderer.HologramManager.HOLOGRAMS.get(id);
+    }
 
     public static void render(PoseStack poseStack, MultiBufferSource buffer, float tickDelta) {
         HologramRenderer.HologramManager.renderAll(poseStack, buffer, tickDelta);
