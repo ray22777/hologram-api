@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "${id}",
+  "name": "${name}",
+  "version": "${version}",
+  "authors": ["${authors}"],
+  "contributors": ["${contributors}"],
+  "contact": {
+    "sources": "${sources_url}",
+    "issues": "${issues_url}"
+  },
+  "description": "${description}",
+  "icon": "assets/icon.png",
+  "license": "${license}",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.ray.HologramAPI.platform.fabric.FabricEntrypoint"
+    ],
+    "client": [
+      "net.ray.HologramAPI.platform.fabric.FabricClientEntrypoint"
+    ]
+  },
+  "mixins": [
+    "hologram_api.mixins.json"
+  ],${dependencies}
+}
