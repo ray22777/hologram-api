@@ -1,10 +1,11 @@
-package com.example.modtemplate.platform.forge;
+package net.ray.HologramAPI.platform.forge;
 
 //? forge {
 
-/*import com.example.modtemplate.platform.Platform;
 import net.minecraftforge.fml.ModList;
+import net.minecraftforge.fml.ModLoader;
 import net.minecraftforge.fml.loading.FMLLoader;
+import net.ray.HologramAPI.platform.Platform;
 
 public class ForgePlatform implements Platform {
 
@@ -28,4 +29,4 @@ public class ForgePlatform implements Platform {
 		return !FMLLoader.isProduction();
 	}
 }
-*///?}
+//?}

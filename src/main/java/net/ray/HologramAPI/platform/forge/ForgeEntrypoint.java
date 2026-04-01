@@ -1,15 +1,15 @@
-package com.example.modtemplate.platform.forge;
+package net.ray.HologramAPI.platform.forge;
 
 //? forge {
 
-/*import com.example.modtemplate.ModTemplate;
 import net.minecraftforge.fml.common.Mod;
+import net.ray.HologramAPI.HologramMod;
 
-@Mod(ModTemplate.MOD_ID)
+@Mod(HologramMod.MOD_ID)
 public class ForgeEntrypoint {
 
 	public ForgeEntrypoint() {
-		ModTemplate.onInitialize();
+		HologramMod.onInitialize();
 	}
 }
-*///?}
+//?}

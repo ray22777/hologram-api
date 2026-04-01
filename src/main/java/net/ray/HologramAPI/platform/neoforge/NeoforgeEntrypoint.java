@@ -1,15 +1,15 @@
-package com.example.modtemplate.platform.neoforge;
+package net.ray.HologramAPI.platform.neoforge;
 
 //? neoforge {
 
-/*import com.example.modtemplate.ModTemplate;
-import net.neoforged.fml.common.Mod;
+/*import net.neoforged.fml.common.Mod;
+import net.ray.HologramAPI.HologramMod;
 
-@Mod(ModTemplate.MOD_ID)
+@Mod(HologramMod.MOD_ID)
 public class NeoforgeEntrypoint {
 
 	public NeoforgeEntrypoint() {
-		ModTemplate.onInitialize();
+		HologramMod.onInitialize();
 	}
 }
 *///?}

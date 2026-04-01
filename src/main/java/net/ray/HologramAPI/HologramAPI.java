@@ -1,10 +1,7 @@
 package net.ray.HologramAPI;
 
-import com.mojang.authlib.minecraft.client.MinecraftClient;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.network.chat.Component;
 
@@ -57,7 +54,7 @@ public class HologramAPI {
     public static void render(PoseStack poseStack, MultiBufferSource buffer, float tickDelta,boolean legacySeethrough) {
         HologramRenderer.HologramManager.renderAll(poseStack, buffer, tickDelta,legacySeethrough,false);
     }
-	public static void renderForce(PoseStack poseStack, MultiBufferSource buffer, float tickDelta,boolean legacySeethrough) {
-		HologramRenderer.HologramManager.renderAll(poseStack, buffer, tickDelta,legacySeethrough,true);
+	public static void renderForce(PoseStack poseStack, MultiBufferSource buffer, float tickDelta) {
+		HologramRenderer.HologramManager.renderAll(poseStack, buffer, tickDelta,true,true);
 	}
 }

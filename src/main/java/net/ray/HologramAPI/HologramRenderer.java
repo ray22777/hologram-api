@@ -31,16 +31,16 @@ import java.util.Map;
 import static net.minecraft.client.gui.Font.DisplayMode.*;
 //? if >=26.1 {
 
-import net.minecraft.util.LightCoordsUtil;
+/*import net.minecraft.util.LightCoordsUtil;
 import net.minecraft.client.renderer.Lightmap;
-//?}else{
-/*import net.minecraft.client.renderer.LightTexture;
-*///?}
+*///?}else{
+import net.minecraft.client.renderer.LightTexture;
+//?}
 //? if >=1.21.11 {
-import net.minecraft.client.renderer.rendertype.RenderTypes;
-//?}else {
-/*import net.minecraft.client.renderer.RenderType;
-*///?}
+/*import net.minecraft.client.renderer.rendertype.RenderTypes;
+*///?}else {
+import net.minecraft.client.renderer.RenderType;
+//?}
 public class HologramRenderer {
     private static final Minecraft MC = Minecraft.getInstance();
 
@@ -182,20 +182,20 @@ public class HologramRenderer {
             var camera = MC.gameRenderer.getMainCamera();
             if (camera == null) return;
 			//? if >=1.21.11 {
-            Vector3f cameraPos = camera.position().toVector3f();
-			//?} else {
-			/*Vector3f cameraPos = camera.getPosition().toVector3f();
-			*///?}
+            /*Vector3f cameraPos = camera.position().toVector3f();
+			*///?} else {
+			Vector3f cameraPos = camera.getPosition().toVector3f();
+			//?}
             float dx = (float)hologram.x - cameraPos.x();
             float dy = (float)hologram.y - cameraPos.y();
             float dz = (float)hologram.z - cameraPos.z();
             float distance = (float)Math.sqrt(dx*dx + dy*dy + dz*dz);
 			//? if >=1.21.11 {
-			Vector3f cameraForward = new Vector3f();
+			/*Vector3f cameraForward = new Vector3f();
             camera.forwardVector().get(cameraForward);
-			//?} else {
-			/*Vector3f cameraForward = camera.getLookVector();
-			*///?}
+			*///?} else {
+			Vector3f cameraForward = camera.getLookVector();
+			//?}
 
             Vector3f toHologram = new Vector3f(dx, dy, dz).normalize();
             float dot = cameraForward.dot(toHologram);
@@ -229,23 +229,23 @@ public class HologramRenderer {
 			int lightLevel;
 			if(hologram.lightLevel == null){
 				//? if >=26.1 {
-					lightLevel = LightCoordsUtil.pack(
+					/*lightLevel = LightCoordsUtil.pack(
 							MC.level.getLightEngine().getRawBrightness(
 									new BlockPos((int)hologram.x, (int)hologram.y, (int)hologram.z), 0
 							) << 4, 7
 					);
-			//?}else if 1.21.11 {
+			*///?}else if 1.21.11 {
 				/*lightLevel = LightTexture.lightCoordsWithEmission(
 						MC.level.getLightEngine().getRawBrightness(
 								new BlockPos((int)hologram.x, (int)hologram.y, (int)hologram.z), 0
 						) << 4, 7 //minimum light level is 7
 				);
 			*///?} else {
-				/*lightLevel = LightTexture.pack(
+				lightLevel = LightTexture.pack(
 						MC.level.getBrightness(LightLayer.BLOCK, new BlockPos((int)hologram.x, (int)hologram.y, (int)hologram.z)),
 						Math.max(7, MC.level.getBrightness(LightLayer.SKY, new BlockPos((int)hologram.x, (int)hologram.y, (int)hologram.z)))
 				);
-				*///?}
+				//?}
 
 			}
 			else{
@@ -283,21 +283,28 @@ public class HologramRenderer {
         int totalHeight = lines.size() * lineHeight;
 
         Matrix4f pose = poseStack.last().pose();
-
 //		pose.rotate((float)Math.PI, 0.0F, 1.0F, 0.0F);
 		pose.translate(1.0F - maxWidth / 2.0F, -totalHeight / 2.0F, 0.0F);
         if (hologram.background) {
             int bgAlpha = (int)(hologram.alpha * ((hologram.backgroundColor >> 24) & 0xFF));
             int bgColor = (bgAlpha << 24) | (hologram.backgroundColor & 0x00FFFFFF);
 			//? if >=1.21.11 {
-			VertexConsumer vertexConsumer = buffer.getBuffer(hologram.renderOnTop ? RenderTypes.textBackgroundSeeThrough() : RenderTypes.textBackground());
-			//?} else {
-			/*VertexConsumer vertexConsumer = buffer.getBuffer(hologram.renderOnTop ? RenderType.textBackgroundSeeThrough() : RenderType.textBackground());
-			*///?}
-			vertexConsumer.addVertex(pose, -1.0F, -1.0F, 0.0F).setColor(bgColor).setLight(15728880);
+			/*VertexConsumer vertexConsumer = buffer.getBuffer(hologram.renderOnTop ? RenderTypes.textBackgroundSeeThrough() : RenderTypes.textBackground());
+			*///?} else {
+			VertexConsumer vertexConsumer = buffer.getBuffer(hologram.renderOnTop ? RenderType.textBackgroundSeeThrough() : RenderType.textBackground());
+			//?}
+			//? if <=1.20.1 {
+			vertexConsumer.vertex(pose, -1.0F, -1.0F, 0.0F).color(bgColor).uv2(15728880).endVertex();
+			vertexConsumer.vertex(pose, -1.0F, totalHeight, 0.0F).color(bgColor).uv2(15728880).endVertex();
+			vertexConsumer.vertex(pose, maxWidth, totalHeight, 0.0F).color(bgColor).uv2(15728880).endVertex();
+			vertexConsumer.vertex(pose, maxWidth, -1.0F, 0.0F).color(bgColor).uv2(15728880).endVertex();
+			//?}else{
+			
+			/*vertexConsumer.addVertex(pose, -1.0F, -1.0F, 0.0F).setColor(bgColor).setLight(15728880);
             vertexConsumer.addVertex(pose, -1.0F, totalHeight, 0.0F).setColor(bgColor).setLight(15728880);
             vertexConsumer.addVertex(pose, maxWidth, totalHeight, 0.0F).setColor(bgColor).setLight(15728880);
             vertexConsumer.addVertex(pose, maxWidth, -1.0F, 0.0F).setColor(bgColor).setLight(15728880);
+			 *///?}
         }
 
         float y = 0;
@@ -367,7 +374,7 @@ public class HologramRenderer {
                                        Hologram.BillboardMode mode) {
         switch (mode) {
 			//? if >=1.21.11 {
-            case CENTER:
+            /*case CENTER:
                 poseStack.mulPose(Axis.YP.rotationDegrees(-camera.yRot()));
                 poseStack.mulPose(Axis.XP.rotationDegrees(camera.xRot()));
                 break;
@@ -379,8 +386,8 @@ public class HologramRenderer {
                 break;
             case FIXED:
                 break;
-			//?} else {
-				/*case CENTER:
+			*///?} else {
+				case CENTER:
 
 					poseStack.mulPose(Axis.YP.rotationDegrees(-camera.getYRot()));
 					poseStack.mulPose(Axis.XP.rotationDegrees(camera.getXRot()));
@@ -393,7 +400,7 @@ public class HologramRenderer {
 					break;
 				case FIXED:
 					break;
-			*///?}
+			//?}
         }
     }
 

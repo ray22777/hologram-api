@@ -1,11 +1,12 @@
-package com.example.modtemplate.platform.neoforge;
+package net.ray.HologramAPI.platform.neoforge;
 
 //? neoforge {
 
-/*import com.example.modtemplate.platform.Platform;
-import net.neoforged.fml.ModList;
+/*import net.neoforged.fml.ModList;
+import net.neoforged.fml.ModLoader;
 import net.neoforged.fml.loading.FMLLoader;
 import net.neoforged.fml.loading.VersionInfo;
+import net.ray.HologramAPI.platform.Platform;
 
 public class NeoforgePlatform implements Platform {
 
