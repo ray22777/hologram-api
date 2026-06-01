@@ -1,2 +1,2 @@
-update all to version 2.0.0
+fix dependency issues
 

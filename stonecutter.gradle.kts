@@ -41,9 +41,10 @@ stonecutter parameters {
 	swaps["mod_group"] = "\"" + property("mod.group") + "\";"
 	swaps["minecraft"] = "\"" + node.metadata.version + "\";"
 	constants["release"] = property("mod.id") != "modtemplate"
+	constants["release"] = property("mod.id") != "modtemplate"
 
 	replacements {
-		string(current.parsed >= "26.1","fabric_cmd") {
+		string(current.parsed >= "26.1", "fabric_cmd") {
 			replace("ClientCommandManager", "ClientCommands")
 		}
 

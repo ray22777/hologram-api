@@ -19,7 +19,7 @@ import net.ray.HologramAPI.platform.forge.ForgePlatform;
 public class HologramMod {
 
 	public static final String MOD_ID = /*$ mod_id*/ "hologram_api";
-	public static final String MOD_VERSION = /*$ mod_version*/ "2.0.0";
+	public static final String MOD_VERSION = /*$ mod_version*/ "2.0.1";
 	public static final String MOD_FRIENDLY_NAME = /*$ mod_name*/ "Hologram API";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 

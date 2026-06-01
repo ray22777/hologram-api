@@ -23,8 +23,10 @@ import javax.inject.Inject
 
 fun Project.prop(name: String): String = (findProperty(name) ?: "") as String
 
-fun Project.env(variable: String): String? = providers.environmentVariable(variable).orNull
-
+fun Project.env(variable: String): String? =
+	runCatching { project.extensions.getByName("env").let {
+		it.javaClass.getMethod("fetch", String::class.java).invoke(it, variable) as? String
+	}}.getOrNull() ?: providers.environmentVariable(variable).orNull
 fun Project.envTrue(variable: String): Boolean = env(variable)?.toDefaultLowerCase() == "true"
 
 fun RepositoryHandler.strictMaven(
@@ -83,6 +85,7 @@ abstract class ModPlatformPlugin @Inject constructor() : Plugin<Project> {
 
 		extension.requiredJava.set(
 			when {
+				stonecutter.eval(stonecutter.current.version, ">=26.1") -> JavaVersion.VERSION_25
 				stonecutter.eval(stonecutter.current.version, ">=1.20.6") -> JavaVersion.VERSION_21
 				stonecutter.eval(stonecutter.current.version, ">=1.18") -> JavaVersion.VERSION_17
 				stonecutter.eval(stonecutter.current.version, ">=1.17") -> JavaVersion.VERSION_16

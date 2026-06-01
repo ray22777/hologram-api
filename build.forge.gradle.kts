@@ -7,7 +7,7 @@ platform {
 	loader = "forge"
 	dependencies {
 		required("minecraft") {
-			forgeVersionRange = "[${prop("deps.minecraft")}]"
+			forgeVersionRange = "[${prop("deps.minecraft")},)"
 		}
 		required("forge") {
 			forgeVersionRange = "[1,)"

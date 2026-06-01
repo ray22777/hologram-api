@@ -8,7 +8,12 @@ platform {
 	loader = "fabric"
 	dependencies {
 		required("minecraft") {
-			versionRange = prop("deps.minecraft")
+//			if (hasProperty("deps.maxVer")) {
+//				versionRange = ">=${prop("deps.minecraft")} <=${prop("deps.maxVer")}"
+//			} else {
+//
+//			}
+			versionRange = ">="+prop("deps.minecraft")
 		}
 		required("fabric-api") {
 			slug("fabric-api")
